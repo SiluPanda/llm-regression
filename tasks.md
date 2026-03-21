@@ -2,13 +2,13 @@
 
 ## Phase 1: Project Setup and Types
 
-- [ ] **Install dev dependencies** — Add `typescript`, `vitest`, and `eslint` as devDependencies in `package.json`. Add `bin` field pointing to `dist/cli.js`. Verify `npm install` succeeds. | Status: not_done
+- [x] **Install dev dependencies** — Add `typescript`, `vitest`, and `eslint` as devDependencies in `package.json`. Add `bin` field pointing to `dist/cli.js`. Verify `npm install` succeeds. | Status: done
 
-- [ ] **Define all TypeScript types in `src/types.ts`** — Create the types file with all interfaces and type aliases from the spec: `TestCase`, `TestInput`, `MetricId`, `MetricThresholds`, `MetricScores`, `EmbedFn`, `LlmFn`, `CustomMetricFn`, `CustomMetricResult`, `Classification`, `ClassificationMode`, `ComparisonResult`, `MetricStats`, `BatchSummary`, `BatchReport`, `RegressionReport`, `CompareOptions`, `BatchOptions`, `RegressionOptions`, `RegressionConfig`, `RegressionTester`, `BaselineEntry`, `BaselineFile`, `SaveBaselineOptions`. All types must be exported. | Status: not_done
+- [x] **Define all TypeScript types in `src/types.ts`** — Create the types file with all interfaces and type aliases from the spec: `TestCase`, `TestInput`, `MetricId`, `MetricThresholds`, `MetricScores`, `EmbedFn`, `LlmFn`, `CustomMetricFn`, `CustomMetricResult`, `Classification`, `ClassificationMode`, `ComparisonResult`, `MetricStats`, `BatchSummary`, `BatchReport`, `RegressionReport`, `CompareOptions`, `BatchOptions`, `RegressionOptions`, `RegressionConfig`, `RegressionTester`, `BaselineEntry`, `BaselineFile`, `SaveBaselineOptions`. All types must be exported. | Status: done
 
-- [ ] **Set up `src/index.ts` barrel exports** — Replace the placeholder content with proper re-exports. Initially export all types from `types.ts`. As modules are implemented, add exports for `compare`, `compareBatch`, `runRegression`, `createRegression`, `saveBaseline`, `loadBaseline`. | Status: not_done
+- [x] **Set up `src/index.ts` barrel exports** — Replace the placeholder content with proper re-exports. Initially export all types from `types.ts`. As modules are implemented, add exports for `compare`, `compareBatch`, `runRegression`, `createRegression`, `saveBaseline`, `loadBaseline`. | Status: done
 
-- [ ] **Create directory structure** — Create all directories specified in the file structure: `src/metrics/`, `src/baseline/`, `src/format/`, `src/utils/`, `src/__tests__/`, `src/__tests__/metrics/`. | Status: not_done
+- [x] **Create directory structure** — Create all directories specified in the file structure: `src/metrics/`, `src/baseline/`, `src/format/`, `src/utils/`, `src/__tests__/`, `src/__tests__/metrics/`. | Status: done
 
 ## Phase 2: Utility Modules
 
