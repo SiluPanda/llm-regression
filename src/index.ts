@@ -27,5 +27,15 @@ export type {
   SaveBaselineOptions,
 } from './types';
 
-// compare, compareBatch, runRegression, createRegression, saveBaseline,
-// loadBaseline will be exported as implementations are added in later phases
+export { compare, compareBatch } from './compare';
+export { createRegression } from './regression';
+export { saveBaseline, loadBaseline } from './baseline';
+export {
+  exactMatch,
+  jaccardSimilarity,
+  rougeL,
+  bleuScore,
+  containsScore,
+  structuralSimilarity,
+  computeMetric,
+} from './metrics/index';
