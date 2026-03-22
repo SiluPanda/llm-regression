@@ -30,17 +30,17 @@
 
 ## Phase 3: Similarity Metrics
 
-- [ ] **Implement `src/metrics/jaccard.ts`** — Jaccard similarity metric. Tokenize both strings (using tokenizer), optionally remove stopwords, compute set intersection over set union. Support `caseSensitive` (default false) and `removeStopwords` (default true) options. Return score in [0, 1]. Return 0.0 if both strings are empty (union is empty). Default threshold: 0.60. | Status: not_done
+- [x] **Implement `src/metrics/jaccard.ts`** — Jaccard similarity metric. Tokenize both strings (using tokenizer), optionally remove stopwords, compute set intersection over set union. Support `caseSensitive` (default false) and `removeStopwords` (default true) options. Return score in [0, 1]. Return 0.0 if both strings are empty (union is empty). Default threshold: 0.60. | Status: done
 
-- [ ] **Implement `src/metrics/rouge-l.ts`** — ROUGE-L metric. Tokenize both strings, compute LCS length using `lcs.ts`, compute precision (`lcs/candidate_length`), recall (`lcs/baseline_length`), and F1 score (`2*P*R/(P+R)`). Return 0.0 if both P and R are 0. Default threshold: 0.70. | Status: not_done
+- [x] **Implement `src/metrics/rouge-l.ts`** — ROUGE-L metric. Tokenize both strings, compute LCS length using `lcs.ts`, compute precision (`lcs/candidate_length`), recall (`lcs/baseline_length`), and F1 score (`2*P*R/(P+R)`). Return 0.0 if both P and R are 0. Default threshold: 0.70. | Status: done
 
-- [ ] **Implement `src/metrics/bleu.ts`** — BLEU metric. Tokenize both strings, extract n-grams for n=1..maxN (default 4), compute clipped precision for each n, compute brevity penalty, compute geometric mean with weights (default uniform). Use smoothing (epsilon 1e-10) to handle zero-precision n-gram levels. Support `maxN` and `weights` options. Default threshold: 0.50. | Status: not_done
+- [x] **Implement `src/metrics/bleu.ts`** — BLEU metric. Tokenize both strings, extract n-grams for n=1..maxN (default 4), compute clipped precision for each n, compute brevity penalty, compute geometric mean with weights (default uniform). Use smoothing (epsilon 1e-10) to handle zero-precision n-gram levels. Support `maxN` and `weights` options. Default threshold: 0.50. | Status: done
 
-- [ ] **Implement `src/metrics/exact.ts`** — Exact match metric. Optionally trim whitespace (default true), optionally normalize whitespace (default false), optionally case-insensitive (default case-sensitive). Return 1.0 if identical after normalization, 0.0 otherwise. Default threshold: 1.0. | Status: not_done
+- [x] **Implement `src/metrics/exact.ts`** — Exact match metric. Optionally trim whitespace (default true), optionally normalize whitespace (default false), optionally case-insensitive (default case-sensitive). Return 1.0 if identical after normalization, 0.0 otherwise. Default threshold: 1.0. | Status: done
 
-- [ ] **Implement `src/metrics/contains.ts`** — Contains match metric. If `phrases` option is provided, use those; otherwise split baseline into sentences using `sentences.ts`. Check each phrase against the candidate using `includes()`. Support `caseSensitive` option (default false). Return `matchedPhrases / totalPhrases`. Return 1.0 if no phrases (vacuously true). Default threshold: 1.0. | Status: not_done
+- [x] **Implement `src/metrics/contains.ts`** — Contains match metric. If `phrases` option is provided, use those; otherwise split baseline into sentences using `sentences.ts`. Check each phrase against the candidate using `includes()`. Support `caseSensitive` option (default false). Return `matchedPhrases / totalPhrases`. Return 1.0 if no phrases (vacuously true). Default threshold: 1.0. | Status: done
 
-- [ ] **Implement `src/metrics/structural.ts`** — Structural match metric. Parse both strings as JSON (score 0.0 if parse fails). Recursively walk both objects comparing keys and types. Support `allowExtraKeys` (default false), `allowMissingKeys` (default false), `checkArrayLength` (default true). Return `matchedFields / totalFields`. Default threshold: 1.0. | Status: not_done
+- [x] **Implement `src/metrics/structural.ts`** — Structural match metric. Parse both strings as JSON (score 0.0 if parse fails). Recursively walk both objects comparing keys and types. Support `allowExtraKeys` (default false), `allowMissingKeys` (default false), `checkArrayLength` (default true). Return `matchedFields / totalFields`. Default threshold: 1.0. | Status: done
 
 - [ ] **Implement `src/metrics/semantic.ts`** — Semantic similarity metric. Call the user-provided `embedFn` on both baseline and candidate strings to get embedding vectors. Compute cosine similarity using `cosine.ts`. Throw descriptive error if `embedFn` is not provided, if it throws, or if it returns a zero-length vector. Default threshold: 0.85. | Status: not_done
 
@@ -58,21 +58,21 @@
 
 ## Phase 5: Single-Pair Comparison (`compare`)
 
-- [ ] **Implement `src/compare.ts`** — The `compare(baseline, candidate, options?)` function. Accept two strings and optional `CompareOptions`. Determine which metric(s) to use (single `metric` or multiple `metrics`; default `'jaccard'`). Dispatch to the appropriate metric module(s). Collect scores. Generate a human-readable diff between baseline and candidate. Classify the result. Measure duration. Return a `ComparisonResult` with all fields populated: `testId` (auto-generate if not provided), `baseline`, `candidate`, `input`, `scores`, `primaryScore`, `classification`, `diff`, `durationMs`, `metricResults`. | Status: not_done
+- [x] **Implement `src/compare.ts`** — The `compare(baseline, candidate, options?)` function. Accept two strings and optional `CompareOptions`. Determine which metric(s) to use (single `metric` or multiple `metrics`; default `'jaccard'`). Dispatch to the appropriate metric module(s). Collect scores. Generate a human-readable diff between baseline and candidate. Classify the result. Measure duration. Return a `ComparisonResult` with all fields populated: `testId` (auto-generate if not provided), `baseline`, `candidate`, `input`, `scores`, `primaryScore`, `classification`, `diff`, `durationMs`, `metricResults`. | Status: done
 
-- [ ] **Implement diff generation in `src/compare.ts`** — Generate a human-readable diff between baseline and candidate strings. Show word-level or line-level differences. This is stored in `ComparisonResult.diff`. | Status: not_done
+- [x] **Implement diff generation in `src/compare.ts`** — Generate a human-readable diff between baseline and candidate strings. Show word-level or line-level differences. This is stored in `ComparisonResult.diff`. | Status: done
 
 ## Phase 6: Batch Comparison (`compareBatch`)
 
-- [ ] **Implement `src/compare-batch.ts`** — The `compareBatch(testCases, options?)` function. Accept an array of `TestCase` objects and optional `BatchOptions`. Process each test case through `compare()`. Implement concurrency control with configurable limit (default 10). Aggregate results into a `BatchReport`. | Status: not_done
+- [x] **Implement `src/compare-batch.ts`** — The `compareBatch(testCases, options?)` function. Accept an array of `TestCase` objects and optional `BatchOptions`. Process each test case through `compare()`. Implement concurrency control with configurable limit (default 10). Aggregate results into a `BatchReport`. | Status: done
 
-- [ ] **Implement aggregate statistics in `src/compare-batch.ts`** — For each metric used, compute aggregate statistics across all test cases: mean, median, min, max, stddev, passRate. Store in `BatchReport.aggregateScores`. | Status: not_done
+- [x] **Implement aggregate statistics in `src/compare-batch.ts`** — For each metric used, compute aggregate statistics across all test cases: mean, median, min, max, stddev, passRate. Store in `BatchReport.aggregateScores`. | Status: done
 
-- [ ] **Implement pass/fail determination in `src/compare-batch.ts`** — Compute passRate as `(neutral + improvements) / total`. Compare against `aggregateThreshold` (default 0.90). Set `summary.passed` accordingly. Populate `summary.total`, `summary.neutral`, `summary.improvements`, `summary.regressions`. | Status: not_done
+- [x] **Implement pass/fail determination in `src/compare-batch.ts`** — Compute passRate as `(neutral + improvements) / total`. Compare against `aggregateThreshold` (default 0.90). Set `summary.passed` accordingly. Populate `summary.total`, `summary.neutral`, `summary.improvements`, `summary.regressions`. | Status: done
 
-- [ ] **Implement per-test-case threshold overrides in `src/compare-batch.ts`** — When a `TestCase` has a `thresholds` field, pass those thresholds to the comparison for that test case, overriding global/per-call thresholds. | Status: not_done
+- [x] **Implement per-test-case threshold overrides in `src/compare-batch.ts`** — When a `TestCase` has a `thresholds` field, pass those thresholds to the comparison for that test case, overriding global/per-call thresholds. | Status: done
 
-- [ ] **Implement progress callback in `src/compare-batch.ts`** — Call `onProgress(completed, total)` after each comparison completes, if the callback is provided in options. | Status: not_done
+- [x] **Implement progress callback in `src/compare-batch.ts`** — Call `onProgress(completed, total)` after each comparison completes, if the callback is provided in options. | Status: done
 
 - [ ] **Implement formatted output in `src/compare-batch.ts`** — After computing results, format the report using the requested format (default `'terminal'`). Store the formatted string in `BatchReport.formatted`. | Status: not_done
 
@@ -100,7 +100,7 @@
 
 - [ ] **Implement `src/create-regression.ts`** — The `createRegression(config)` factory function. Accept a `RegressionConfig` object. Return a `RegressionTester` instance with `compare`, `compareBatch`, and `runRegression` methods. Each method merges the instance defaults with per-call options (per-call options take priority). | Status: not_done
 
-- [ ] **Implement option merging in `src/create-regression.ts`** — When a method is called on the `RegressionTester`, merge the instance config with the call-specific options. Per-call options override instance defaults. Threshold merging should be deep (per-metric). | Status: not_done
+- [x] **Implement option merging in `src/create-regression.ts`** — When a method is called on the `RegressionTester`, merge the instance config with the call-specific options. Per-call options override instance defaults. Threshold merging should be deep (per-metric). | Status: done
 
 ## Phase 10: Baseline Management
 
@@ -122,21 +122,21 @@
 
 - [ ] **Implement CLI error handling** — Catch all errors, print user-friendly messages to stderr, exit with code 2 for configuration/usage errors. Handle missing config file, invalid JSON in config file, missing required options, invalid metric names, invalid threshold values. | Status: not_done
 
-- [ ] **Add `bin` field to `package.json`** — Add `"bin": { "llm-regression": "dist/cli.js" }` to package.json so the CLI is available after install. | Status: not_done
+- [x] **Add `bin` field to `package.json`** — Add `"bin": { "llm-regression": "dist/cli.js" }` to package.json so the CLI is available after install. | Status: done
 
 ## Phase 12: Unit Tests -- Metrics
 
-- [ ] **Write tests for Jaccard metric (`src/__tests__/metrics/jaccard.test.ts`)** — Test cases per spec: identical strings (score 1.0), completely different strings (score 0.0), same words different order (score 1.0), partial overlap (proportional score verified against hand calc), stopword removal, case sensitivity (default insensitive, configurable), empty strings (score 0.0), threshold boundary (at threshold = pass, below = fail). | Status: not_done
+- [x] **Write tests for Jaccard metric (`src/__tests__/metrics/jaccard.test.ts`)** — Test cases per spec: identical strings (score 1.0), completely different strings (score 0.0), same words different order (score 1.0), partial overlap (proportional score verified against hand calc), stopword removal, case sensitivity (default insensitive, configurable), empty strings (score 0.0), threshold boundary (at threshold = pass, below = fail). | Status: done
 
-- [ ] **Write tests for ROUGE-L metric (`src/__tests__/metrics/rouge-l.test.ts`)** — Test cases: identical sequences (1.0), completely different (0.0), subsequence present (proportional score), word order matters (reversed scores lower), one string is substring of other (precision/recall asymmetry), empty strings (0.0). | Status: not_done
+- [x] **Write tests for ROUGE-L metric (`src/__tests__/metrics/rouge-l.test.ts`)** — Test cases: identical sequences (1.0), completely different (0.0), subsequence present (proportional score), word order matters (reversed scores lower), one string is substring of other (precision/recall asymmetry), empty strings (0.0). | Status: done
 
-- [ ] **Write tests for BLEU metric (`src/__tests__/metrics/bleu.test.ts`)** — Test cases: identical strings (close to 1.0), completely different (near 0.0 with smoothing), brevity penalty (short candidate penalized), n-gram precision (hand-calculated for small examples), smoothing (zero-precision levels handled). | Status: not_done
+- [x] **Write tests for BLEU metric (`src/__tests__/metrics/bleu.test.ts`)** — Test cases: identical strings (close to 1.0), completely different (near 0.0 with smoothing), brevity penalty (short candidate penalized), n-gram precision (hand-calculated for small examples), smoothing (zero-precision levels handled). | Status: done
 
-- [ ] **Write tests for Exact metric (`src/__tests__/metrics/exact.test.ts`)** — Test cases: identical strings (1.0), different strings (0.0), whitespace trimming (trailing spaces ignored when trim:true), case sensitivity (respects config), whitespace normalization (multiple spaces collapsed when configured). | Status: not_done
+- [x] **Write tests for Exact metric (`src/__tests__/metrics/exact.test.ts`)** — Test cases: identical strings (1.0), different strings (0.0), whitespace trimming (trailing spaces ignored when trim:true), case sensitivity (respects config), whitespace normalization (multiple spaces collapsed when configured). | Status: done
 
-- [ ] **Write tests for Contains metric (`src/__tests__/metrics/contains.test.ts`)** — Test cases: all phrases present (1.0), some missing (proportional), case insensitivity (default), custom phrase list, empty phrase list (1.0 vacuously), empty candidate with expected phrases (0.0). | Status: not_done
+- [x] **Write tests for Contains metric (`src/__tests__/metrics/contains.test.ts`)** — Test cases: all phrases present (1.0), some missing (proportional), case insensitivity (default), custom phrase list, empty phrase list (1.0 vacuously), empty candidate with expected phrases (0.0). | Status: done
 
-- [ ] **Write tests for Structural metric (`src/__tests__/metrics/structural.test.ts`)** — Test cases: identical JSON (1.0), same keys different values (1.0), missing key (reduced score), extra key (fail when allowExtraKeys:false, pass when true), type mismatch, nested objects (recursive), arrays (same/different length, element types), non-JSON input (0.0). | Status: not_done
+- [x] **Write tests for Structural metric (`src/__tests__/metrics/structural.test.ts`)** — Test cases: identical JSON (1.0), same keys different values (1.0), missing key (reduced score), extra key (fail when allowExtraKeys:false, pass when true), type mismatch, nested objects (recursive), arrays (same/different length, element types), non-JSON input (0.0). | Status: done
 
 - [ ] **Write tests for Semantic metric (`src/__tests__/metrics/semantic.test.ts`)** — Use a mock embedder. Test cases: identical texts (1.0 from identical embeddings), orthogonal embeddings (0.0), similar embeddings above threshold (pass), dissimilar below threshold (fail), embedder throws (comparison fails with error), embedder returns zero vector (error). | Status: not_done
 
@@ -146,9 +146,9 @@
 
 - [ ] **Write tests for classification logic (`src/__tests__/classify.test.ts`)** — Test cases: score above threshold = neutral, score below threshold = regression, ground truth improvement detection, multi-metric 'any' mode (one below = regression), multi-metric 'all' mode (all must be below), composite scoring (weighted average vs. composite threshold). | Status: not_done
 
-- [ ] **Write tests for `compare` function (`src/__tests__/compare.test.ts`)** — End-to-end single-pair comparison tests: two strings in, ComparisonResult out, classification correct. Test with different metrics. Test with multiple metrics. Test with custom metric. Test with semantic metric (mock embedder). Verify all fields of ComparisonResult are populated. | Status: not_done
+- [x] **Write tests for `compare` function (`src/__tests__/compare.test.ts`)** — End-to-end single-pair comparison tests: two strings in, ComparisonResult out, classification correct. Test with different metrics. Test with multiple metrics. Test with custom metric. Test with semantic metric (mock embedder). Verify all fields of ComparisonResult are populated. | Status: done
 
-- [ ] **Write tests for `compareBatch` function (`src/__tests__/compare-batch.test.ts`)** — Test cases per spec: all neutral (100% pass rate, passed: true), some regressions above aggregate threshold (passed: true, regressions listed), regressions below aggregate threshold (passed: false), aggregate statistics verified against manual calculation, empty test case array (passed: true), single test case. | Status: not_done
+- [x] **Write tests for `compareBatch` function (`src/__tests__/compare-batch.test.ts`)** — Test cases per spec: all neutral (100% pass rate, passed: true), some regressions above aggregate threshold (passed: true, regressions listed), regressions below aggregate threshold (passed: false), aggregate statistics verified against manual calculation, empty test case array (passed: true), single test case. | Status: done
 
 - [ ] **Write tests for `runRegression` function (`src/__tests__/run-regression.test.ts`)** — Integration tests with mock LLM function. Verify both prompts called for each input. Verify outputs compared correctly. Verify RegressionReport fields: baselinePrompt, candidatePrompt, llmCalls, estimatedTokens. Test with custom composePrompt. Test LLM concurrency control. Test LLM error handling. | Status: not_done
 
@@ -188,13 +188,13 @@
 
 ## Phase 17: Documentation
 
-- [ ] **Create README.md** — Write a comprehensive README covering: package description, installation, quick start examples, API reference (compare, compareBatch, runRegression, createRegression, saveBaseline, loadBaseline), metrics table with descriptions and default thresholds, configuration reference, CLI usage, output format examples, CI integration examples (GitHub Actions), ecosystem integration (prompt-snap, prompt-diff, llm-vcr, llm-cost-per-test, output-grade), TypeScript type information. | Status: not_done
+- [x] **Create README.md** — Write a comprehensive README covering: package description, installation, quick start examples, API reference (compare, compareBatch, runRegression, createRegression, saveBaseline, loadBaseline), metrics table with descriptions and default thresholds, configuration reference, CLI usage, output format examples, CI integration examples (GitHub Actions), ecosystem integration (prompt-snap, prompt-diff, llm-vcr, llm-cost-per-test, output-grade), TypeScript type information. | Status: done
 
 - [ ] **Add JSDoc comments to all public exports** — Every exported function, type, and interface should have JSDoc comments with description, parameter documentation, return type, and usage examples. | Status: not_done
 
 ## Phase 18: Build, Lint, and Final Verification
 
-- [ ] **Configure ESLint** — Set up ESLint for TypeScript. Ensure `npm run lint` passes on all source files. | Status: not_done
+- [x] **Configure ESLint** — Set up ESLint for TypeScript. Ensure `npm run lint` passes on all source files. | Status: done
 
 - [ ] **Verify TypeScript build** — Run `npm run build` and verify all files compile without errors. Verify `dist/` output contains `.js`, `.d.ts`, and `.d.ts.map` files for all modules. Verify the `dist/cli.js` file has the shebang line. | Status: not_done
 
@@ -208,6 +208,6 @@
 
 - [ ] **Verify package.json fields** — Ensure `name`, `version`, `description`, `main`, `types`, `files`, `bin`, `engines`, `license`, `keywords`, `publishConfig` are all correct. Add relevant keywords (e.g., "llm", "regression", "testing", "prompt", "comparison", "similarity"). | Status: not_done
 
-- [ ] **Verify `files` field in package.json** — Ensure only `dist` is published. Verify `prepublishOnly` script runs build. Run `npm pack --dry-run` to check published file list. | Status: not_done
+- [x] **Verify `files` field in package.json** — Ensure only `dist` is published. Verify `prepublishOnly` script runs build. Run `npm pack --dry-run` to check published file list. | Status: done
 
-- [ ] **Verify zero runtime dependencies** — Confirm `dependencies` field in package.json is empty or absent. All metric implementations use only built-in Node.js APIs and custom code. | Status: not_done
+- [x] **Verify zero runtime dependencies** — Confirm `dependencies` field in package.json is empty or absent. All metric implementations use only built-in Node.js APIs and custom code. | Status: done
