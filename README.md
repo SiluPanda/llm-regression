@@ -3,6 +3,7 @@
 Semantic regression testing for LLM prompt versions. Compare outputs across prompt changes using pluggable similarity metrics, classify each change as a regression, improvement, or neutral, and enforce configurable pass/fail thresholds.
 
 [![npm version](https://img.shields.io/npm/v/llm-regression.svg)](https://www.npmjs.com/package/llm-regression)
+[![npm downloads](https://img.shields.io/npm/dt/llm-regression.svg)](https://www.npmjs.com/package/llm-regression)
 [![license](https://img.shields.io/npm/l/llm-regression.svg)](https://github.com/SiluPanda/llm-regression/blob/master/LICENSE)
 [![node](https://img.shields.io/node/v/llm-regression.svg)](https://nodejs.org)
 [![types](https://img.shields.io/npm/types/llm-regression.svg)](https://www.npmjs.com/package/llm-regression)
