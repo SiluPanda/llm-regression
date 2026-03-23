@@ -1,15 +1,12 @@
 {
   "name": "llm-regression",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Semantic regression testing for prompt versions",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "bin": {
-    "llm-regression": "dist/cli.js"
-  },
   "scripts": {
     "build": "tsc",
     "test": "vitest run",

@@ -66,4 +66,15 @@ describe('bleuScore', () => {
     const score = bleuScore('the cat sat on mat', 'the cat walked on floor', { maxN: 1 });
     expect(score).toBeCloseTo(3 / 5, 5);
   });
+
+  it('returns non-zero score for identical short sentences with default maxN', () => {
+    const score = bleuScore('hello world', 'hello world');
+    expect(score).toBeGreaterThan(0);
+    expect(score).toBeCloseTo(1.0, 1);
+  });
+
+  it('returns non-zero score for single-token identical strings', () => {
+    const score = bleuScore('hello', 'hello');
+    expect(score).toBeGreaterThan(0);
+  });
 });

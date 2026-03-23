@@ -40,15 +40,16 @@ export function bleuScore(
   candidate: string,
   options: BleuOptions = {},
 ): number {
-  const maxN = options.maxN ?? 4;
-
   const refTokens = tokenize(baseline);
   const hypTokens = tokenize(candidate);
 
   if (hypTokens.length === 0) return 0;
 
+  const maxN = Math.min(options.maxN ?? 4, hypTokens.length);
+  if (maxN === 0) return 0;
+
   const weights =
-    options.weights ??
+    options.weights?.slice(0, maxN) ??
     Array<number>(maxN).fill(1 / maxN);
 
   // Brevity penalty

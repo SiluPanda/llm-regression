@@ -95,6 +95,8 @@ function classifyScore(
   scores: MetricScores,
   thresholds: Record<string, number>,
 ): Classification {
+  if (isNaN(primaryScore)) return 'neutral';
+
   // Use the primary score against the primary metric's threshold
   const primaryMetric = metrics[0];
   const primaryThreshold = thresholds[primaryMetric] ?? 0.5;
