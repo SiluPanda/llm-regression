@@ -109,6 +109,12 @@ describe('compare', () => {
     });
     expect(result.scores.semantic).toBeNaN();
   });
+
+  it('classifies as neutral when all metrics produce NaN', async () => {
+    const result = await compare('hello', 'world', { metrics: ['semantic'] });
+    expect(result.classification).toBe('neutral');
+    expect(isNaN(result.primaryScore)).toBe(true);
+  });
 });
 
 describe('compareBatch', () => {
